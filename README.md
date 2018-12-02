@@ -15,7 +15,7 @@ Implementation a minimalistic text-based RPG game.
 * `cd target`
 * `java -jar swingy.jar gui (or console)`
 * `You can switch from one output mode to one another (key 1 - from gui to console, 
-  "gui" - from console to gui`
+  "gui" - from console to gui)`
 
 ***
 
