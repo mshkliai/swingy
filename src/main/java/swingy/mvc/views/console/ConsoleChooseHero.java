@@ -1,9 +1,8 @@
 package swingy.mvc.views.console;
 
 import swingy.bd.DataBase;
-import swingy.mvc.Controller;
+import swingy.mvc.models.Hero;
 import swingy.mvc.models.heroBuilder.DirectorHero;
-import swingy.mvc.models.myHero;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class ConsoleChooseHero
 {
     private DirectorHero builder;
     private List<String> names;
-    private myHero       hero;
+    private Hero       hero;
     private Scanner      scanner;
 
     public ConsoleChooseHero(Scanner scanner)
@@ -22,7 +21,7 @@ public class ConsoleChooseHero
         this.scanner = scanner;
     }
 
-    public  myHero  getHero() throws Exception
+    public  Hero  getHero() throws Exception
     {
         int value;
 
@@ -68,7 +67,7 @@ public class ConsoleChooseHero
                 break;
             else if ( value <= index)
             {
-                System.out.println(DataBase.getDb().getHero(names.get(value - 1)).getInfo());
+                System.out.println(DataBase.getDb().getHero(names.get(value - 1)).getFormattedInfo());
                 System.out.println("\nMake choice: 1) Select   2) Remove   3) Cancel");
 
                 int choice = this.getNiceValue();
@@ -118,9 +117,9 @@ public class ConsoleChooseHero
     {
         String nameHero = "";
         String error = "";
-        myHero newHero = builder.buildbyType(type);
+        Hero newHero = builder.buildbyType(type);
 
-        System.out.println(newHero.getInfo() + "\nCreate him ? 1) Yes   2) No");
+        System.out.println(newHero.getFormattedInfo() + "\nCreate him ? 1) Yes   2) No");
 
         int value = this.getNiceValue();
 

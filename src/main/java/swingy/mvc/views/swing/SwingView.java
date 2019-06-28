@@ -2,6 +2,7 @@ package swingy.mvc.views.swing;
 
 import swingy.mvc.Controller;
 import swingy.mvc.views.IView;
+import swingy.resources.Resources;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,14 +11,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class SwingView extends JFrame implements IView
-{
-    private Controller              controller;
-    private KeyAdapter              keySupporter;
-    private SwingPanel              panel;
-    private SwingMapPanel           map;
-    private JScrollPane             scrollMap;
-    private JScrollPane             scrollGameLog;
+public class SwingView extends JFrame implements IView {
+    private Resources resources;
+    private Controller controller;
+    private KeyAdapter keySupporter;
+    private SwingPanel panel;
+    private SwingMapPanel map;
+    private JScrollPane scrollMap;
+    private JScrollPane scrollGameLog;
 
     private int                     squareSize;
 
@@ -26,11 +27,12 @@ public class SwingView extends JFrame implements IView
 
     private String                  type;
 
-    /****************** Constructor *******************/
-
-    public SwingView(Controller controller)
-    {
+    public SwingView(Controller controller) {
         super("Swingy");
+
+        if (resources == null) {
+            resources = new Resources();
+        }
 
         this.setBounds(500, 250, 1200, 1000);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,8 +40,9 @@ public class SwingView extends JFrame implements IView
         this.setLayout(null);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                if (controller.getHero() != null)
+                if (controller.getHero() != null) {
                     controller.saveHero();
+                }
             }
         });
 
@@ -48,7 +51,7 @@ public class SwingView extends JFrame implements IView
         this.setVisible(true);
         this.setFocusable(true);
 
-        this.panel = new SwingPanel(controller);
+        this.panel = new SwingPanel();
         this.squareSize = 70;
 
         setContentPane(panel);
@@ -60,7 +63,7 @@ public class SwingView extends JFrame implements IView
     /***************** Implementing of Interface IView **********************/
 
     @Override
-    public void ChooseHero() throws Exception {
+    public void ChooseHero() {
         this.controller.setHero(new SwingChooseHero(panel).ChooseHero());
     }
 

@@ -1,42 +1,31 @@
 package swingy.mvc;
 
-import lombok.Getter;
-import lombok.Setter;
 import swingy.bd.DataBase;
 import swingy.mvc.models.Artifact;
 import swingy.mvc.models.Enemy;
 import swingy.mvc.models.EnemyBuilder;
-import swingy.mvc.views.*;
+import swingy.mvc.models.Hero;
+import swingy.mvc.views.IView;
+import swingy.mvc.views.console.ConsoleView;
+import swingy.mvc.views.swing.SwingView;
 
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import swingy.mvc.models.myHero;
-import swingy.mvc.views.console.*;
-import swingy.mvc.views.swing.*;
+public class Controller {
+    private IView currentGui;
 
-public class Controller
-{
-    private IView                       currentGui;
+    private Hero hero;
+    private int sizeMap = 0;
+    private ArrayList<Enemy> enemies;
+    private Random rand;
 
-    @Setter @Getter private myHero      hero;
-    @Getter private int                 sizeMap;
-    @Getter private ArrayList<Enemy>    enemies;
-    private Random                      rand;
-
-    /************** Constructor *****************/
-
-    public Controller()
-    {
-        this.enemies = new ArrayList<>();
-        this.sizeMap = 0;
-        this.rand = new Random();
-        this.currentGui = null;
+    public Controller() {
+        enemies = new ArrayList<>();
+        rand = new Random();
     }
-
-    /************* Game ******************/
 
     public  void    startGame(String argument) throws Exception
     {
@@ -52,8 +41,6 @@ public class Controller
         }
         this.currentGui.drawGameObjects();
     }
-
-    /**************** Public methods for View *****************/
 
     public void    keyPressed(int key)
     {
@@ -72,8 +59,6 @@ public class Controller
         if (currentGui.simpleDialog("Save your hero ?"))
             DataBase.getDb().updateHero(this.hero);
     }
-
-    /****************** Private methods *****************/
 
     private void    handleKey(int key)
     {
@@ -121,8 +106,6 @@ public class Controller
         }
     }
 
-    /*************** Game logic ******************/
-
     private void    handleCollisions()
     {
         for (int i = 0; i < this.enemies.size(); i++)
@@ -135,7 +118,7 @@ public class Controller
         /* Hero initialization */
 
         this.hero.getPosition().setLocation( sizeMap >> 1, sizeMap >> 1);
-        this.hero.setHitP( hero.getMaxHp() );
+        this.hero.setHP( hero.getMaxHp() );
 
         /* Enemies initialization */
 
@@ -186,7 +169,7 @@ public class Controller
         }
         else
         {
-            this.hero.setHitP( hero.getHitP() - (enemy.getAttack() << 2) + hero.getFinalDefense() );
+            this.hero.setHP( hero.getHP() - (enemy.getAttack() << 2) + hero.getFinalDefense() );
             if ( this.checkDeath() )
                 return;
 
@@ -205,7 +188,7 @@ public class Controller
         {
             currentGui.addLog("Level up ! Skills increased !");
             hero.setMaxHp( hero.getMaxHp() + (4 << hero.getLevel()) );
-            hero.setHitP( hero.getMaxHp() );
+            hero.setHP( hero.getMaxHp() );
             hero.setAttack( hero.getAttack() + (hero.getLevel() << 2) );
             hero.setDefense( hero.getDefense() + (hero.getLevel() << 1) );
             hero.setLevel( hero.getLevel() + 1 );
@@ -217,7 +200,7 @@ public class Controller
 
     private boolean   checkDeath()
     {
-        if ( hero.getHitP() <= 0 )
+        if ( hero.getHP() <= 0 )
         {
             this.currentGui.updateData();
 
@@ -240,7 +223,7 @@ public class Controller
         {
             if (rand.nextInt(2) == 0) {
                 int up = rand.nextInt(30) + 5;
-                hero.setHitP(hero.getHitP() + up);
+                hero.setHP(hero.getHP() + up);
                 currentGui.addLog("Found health elixir + " + up + " hp !");
             }
             else
@@ -255,7 +238,7 @@ public class Controller
         EnemyBuilder enemyBuilder = new EnemyBuilder();
 
         for (int i = rand.nextInt(sizeMap) + sizeMap; i > 0; i--)
-            this.enemies.add(enemyBuilder.buildEnemy(sizeMap, enemies, hero));
+            enemies.add(enemyBuilder.buildEnemy(sizeMap, enemies, hero));
     }
 
     private void  manageArtifacts(Enemy enemy)
@@ -269,10 +252,24 @@ public class Controller
         }
     }
 
-    /**************** Gui changing ****************************/
-
     private void    changeGui(String guiName)
     {
         this.currentGui = guiName.equals("gui") ? new SwingView(this) : new ConsoleView(this);
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public int getSizeMap() {
+        return sizeMap;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
     }
 }

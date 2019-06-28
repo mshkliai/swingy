@@ -4,9 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import swingy.mvc.models.Artifact;
 import swingy.mvc.models.heroBuilder.DirectorHero;
-import swingy.mvc.models.myHero;
+import swingy.mvc.models.Hero;
 
 public class DataBase
 {
@@ -21,7 +20,7 @@ public class DataBase
     private DataBase()
     {
         this.driverName  = "org.sqlite.JDBC";
-        this.connectionString = "jdbc:sqlite:../heroes.db";
+        this.connectionString = "jdbc:sqlite:".concat(System.getProperty("user.dir")).concat("/heroes.db");
         this.connection = null;
     }
 
@@ -33,55 +32,76 @@ public class DataBase
         return db;
     }
 
-    public void   connectDb() throws Exception
+    public void connectDb()
     {
-        if (this.connection == null)
+        if (connection == null)
         {
-            Class.forName(this.driverName);
-            this.connection = DriverManager.getConnection(this.connectionString);
+            try {
+                Class.forName(driverName);
 
-            statm = this.connection.createStatement();
-            statm.execute("CREATE  TABLE if not EXISTS 'heroes' ('name' text, 'type' text, 'level' INT, 'exp' INT," +
-                    "'attack' INT, 'defense' INT, 'hp' INT, 'maxHp' INT, 'artifactT' text, 'artifactV' INT);");
+                connection = DriverManager.getConnection(connectionString);
+                statm = connection.createStatement();
+                statm.execute("CREATE  TABLE if not EXISTS 'heroes' ('name' text, 'type' text, 'level' INT, 'exp' INT," +
+                        "'attack' INT, 'defense' INT, 'hp' INT, 'maxHp' INT, 'artifactT' text, 'artifactV' INT);");
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public List<String> getNames() throws Exception
-    {
-        info = statm.executeQuery("SELECT * FROM heroes");
+    public List<String> getNames() {
         List<String> names = new ArrayList<>();
 
-        while (info.next())
-            names.add(info.getString("name"));
-
+        try {
+            info = statm.executeQuery("SELECT * FROM heroes");
+            while (info.next())
+                names.add(info.getString("name"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return names;
     }
 
-    public void        addNewHero(myHero newHero) throws Exception
+    public void        addNewHero(Hero newHero)
     {
         String artifactType = newHero.getArtifact() == null ? "" : newHero.getArtifact().getType();
         int    artifactValue = artifactType == "" ? 0 : newHero.getArtifact().getValue();
 
         String  requestAdd = "VALUES ('" + newHero.getName() + "', '" + newHero.getType() + "', " + newHero.getLevel() + "," +
-                newHero.getExp() + "," + newHero.getAttack() + "," + newHero.getDefense() + "," + newHero.getHitP() + ","
+                newHero.getExp() + "," + newHero.getAttack() + "," + newHero.getDefense() + "," + newHero.getHP() + ","
                 + newHero.getMaxHp() + ",'" + artifactType + "'," + artifactValue + ");";
 
-        statm.execute("INSERT INTO 'heroes' ('name', 'type', 'level', 'exp', 'attack', 'defense', 'hp', 'maxHP', 'artifactT', 'artifactV')" + requestAdd );
+        try {
+            statm.execute("INSERT INTO 'heroes' ('name', 'type', 'level', 'exp', 'attack', 'defense', 'hp', 'maxHP', 'artifactT', 'artifactV')" + requestAdd );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void        remove(String name) throws Exception
+    public void        remove(String name)
     {
-        statm.execute("DELETE FROM heroes WHERE name = '" + name + "';");
+        try {
+            statm.execute("DELETE FROM heroes WHERE name = '" + name + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public myHero        getHero(String name) throws Exception
+    public Hero getHero(String name)
     {
-        info = statm.executeQuery("SELECT * FROM heroes where name = '" + name + "';");
+        try {
+            info = statm.executeQuery("SELECT * FROM heroes where name = '" + name + "';");
+            if (info.next()) {
+                return new DirectorHero().buildByInfo(info);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        return info.next() ? new DirectorHero().buildByInfo(info) : null;
+        return null;
     }
 
-    public void         updateHero(myHero hero)
+    public void         updateHero(Hero hero)
     {
         String request = "UPDATE heroes SET level = " + hero.getLevel() + ", exp = " + hero.getExp() +
                 ", attack = " + hero.getAttack() + ", defense = " + hero.getDefense() + ", hp = " + hero.getMaxHp() +

@@ -1,7 +1,7 @@
 package swingy.mvc.models.heroBuilder;
 
-import swingy.mvc.models.myHero;
+import swingy.mvc.models.Hero;
 
 public interface IBuilder {
-    public void buildDefaultStats(myHero hero);
+    void buildDefaultStats(Hero hero);
 }

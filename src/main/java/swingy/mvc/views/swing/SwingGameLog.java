@@ -1,47 +1,25 @@
 package swingy.mvc.views.swing;
 
+import swingy.resources.Resources;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
-public class SwingGameLog extends JTextArea
-{
-    private Font    font;
+public class SwingGameLog extends JTextArea {
+    public SwingGameLog() {
+        setLayout(null);
+        setAutoscrolls(true);
+        setBackground(Color.gray);
+        setForeground( new Color(124, 252, 0) );
 
-    public SwingGameLog()
-    {
-        this.font = null;
-        this.setLayout(null);
-        this.setAutoscrolls(true);
-        this.setBackground(Color.gray);
-        this.setForeground( new Color(124, 252, 0) );
-
-        this.setEditable(false);
-        this.setFocusable(false);
-    }
-
-    private void    loadFont()
-    {
-        try {
-            this.font = Font.createFont(Font.TRUETYPE_FONT, new File("../resources/fonts/font.otf")).deriveFont(18f);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        setEditable(false);
+        setFocusable(false);
+        setFont(Resources.smallFont);
     }
 
     @Override
-    public void	append(String str)
-    {
-        if (this.font == null)
-        {
-            this.loadFont();
-            this.setFont(font);
-        }
-
+    public void	append(String str) {
         super.append(str);
-        this.setRows(getRows() + 1);
+        setRows(getRows() + 1);
     }
 }

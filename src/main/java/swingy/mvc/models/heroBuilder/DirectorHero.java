@@ -1,52 +1,47 @@
 package swingy.mvc.models.heroBuilder;
 
-import swingy.mvc.models.*;
-import javax.validation.*;
+import swingy.mvc.models.Artifact;
+import swingy.mvc.models.Hero;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
 import java.sql.ResultSet;
-import java.util.Set;
 import java.util.logging.Level;
 
-public class DirectorHero
-{
-    public DirectorHero()
-    {
-        this.builder = null;
+public class DirectorHero {
+    private IBuilder builder;
+
+    public DirectorHero() {
+        builder = null;
     }
 
-    public myHero   buildbyType(String type)
-    {
-        myHero  newHero = new myHero();
+    public Hero buildbyType(String type) {
+        Hero newHero = new Hero();
 
-        switch (type)
-        {
+        switch (type) {
             case "Human": this.builder = new HumanBuilder(); break;
             case "Ork":   this.builder = new OrkBuilder();   break;
             case "Elf":   this.builder = new ElfBuilder();   break;
         }
-        this.builder.buildDefaultStats(newHero);
-
+        builder.buildDefaultStats(newHero);
         return newHero;
     }
 
-    public String   trySetName(myHero hero, String newName)
-    {
-        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+    public String   trySetName(Hero hero, String newName) {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
         hero.setName(newName);
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
 
-        Set<ConstraintViolation<myHero>> violations = validator.validate(hero);
-
-        for (ConstraintViolation<myHero> violation : violations) {
+        for (ConstraintViolation<Hero> violation : factory.getValidator().validate(hero)) {
             return violation.getMessage();
         }
-        return null;
+        return "";
     }
 
-    public myHero   buildByInfo(ResultSet info) throws Exception
-    {
-        myHero newHero = new myHero();
+    public Hero buildByInfo(ResultSet info) throws Exception {
+        Hero newHero = new Hero();
 
         newHero.setName(info.getString("name"));
         newHero.setType(info.getString("type"));
@@ -56,10 +51,8 @@ public class DirectorHero
         newHero.setExp(info.getInt("exp"));
         newHero.setLevel(info.getInt("level"));
         newHero.setMaxHp(info.getInt("maxHp"));
-        newHero.setHitP(info.getInt("hp"));
+        newHero.setHP(info.getInt("hp"));
 
         return newHero;
     }
-
-    private IBuilder builder;
 }
