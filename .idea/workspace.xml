@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="f19fe41b-8b6a-4b8d-bd39-2ad9f924f2ba" name="Default Changelist" comment="Code refactor and new bugs ;)">
       <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml" afterDir="false" />
@@ -20,6 +21,9 @@
       <change afterPath="$PROJECT_DIR$/heroes.db" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/swingy.iml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="f19fe41b-8b6a-4b8d-bd39-2ad9f924f2ba" name="Default Changelist" comment="Code refactor and new bugs ;)" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,6 +64,8 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="271">
               <caret line="240" column="12" selection-start-line="240" selection-start-column="12" selection-end-line="240" selection-end-column="12" />
+<<<<<<< HEAD
+=======
               <folding>
                 <element signature="e#8007#8008#0" expanded="true" />
                 <element signature="e#8077#8078#0" expanded="true" />
@@ -70,11 +76,44 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/models/EnemyBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
+              <folding>
+                <element signature="e#8007#8008#0" expanded="true" />
+                <element signature="e#8077#8078#0" expanded="true" />
+                <element signature="e#8138#8139#0" expanded="true" />
+                <element signature="e#8212#8213#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/models/EnemyBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/views/swing/SwingPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/views/swing/SwingChooseHero.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1144">
+              <caret line="196" column="1" lean-forward="true" selection-start-line="196" selection-start-column="1" selection-end-line="196" selection-end-column="1" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -407,7 +446,11 @@
       <option name="presentableId" value="Default" />
       <updated>1561704340245</updated>
       <workItem from="1561704347727" duration="265000" />
+<<<<<<< HEAD
       <workItem from="1561704824383" duration="13331000" />
+=======
+      <workItem from="1561704824383" duration="13415000" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
     </task>
     <task id="LOCAL-00001" summary="Code refactor and new bugs ;)">
       <created>1561725010642</created>
@@ -420,7 +463,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="13596000" />
+=======
+    <option name="totallyTimeSpent" value="13680000" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
@@ -686,6 +733,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/views/IView.java">
+<<<<<<< HEAD
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+=======
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
@@ -696,13 +748,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="766">
           <caret line="59" selection-start-line="59" selection-end-line="59" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/views/swing/SwingMapPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="766">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+=======
+        <state relative-caret-position="271">
+          <caret line="240" column="12" selection-start-line="240" selection-start-column="12" selection-end-line="240" selection-end-column="12" />
+          <folding>
+            <element signature="e#8007#8008#0" expanded="true" />
+            <element signature="e#8077#8078#0" expanded="true" />
+            <element signature="e#8138#8139#0" expanded="true" />
+            <element signature="e#8212#8213#0" expanded="true" />
+          </folding>
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="271">
           <caret line="240" column="12" selection-start-line="240" selection-start-column="12" selection-end-line="240" selection-end-column="12" />
+=======
+        <state relative-caret-position="405">
+          <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
           <folding>
             <element signature="e#8007#8008#0" expanded="true" />
             <element signature="e#8077#8078#0" expanded="true" />
@@ -712,10 +788,24 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/models/EnemyBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/views/swing/SwingPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swingy/mvc/views/swing/SwingChooseHero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1144">
+          <caret line="196" column="1" lean-forward="true" selection-start-line="196" selection-start-column="1" selection-end-line="196" selection-end-column="1" />
+>>>>>>> parent of 5c4a4ff... Code refactor(review not approved)
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
